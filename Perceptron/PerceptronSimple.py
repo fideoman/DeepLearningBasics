@@ -1,5 +1,5 @@
 '''
-Created on 20-09-2019
+Creado inicialmente el 20-09-2019
 
 @author: Isaac Silva Luna
 '''
@@ -7,28 +7,22 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sklearn.metrics.accuracy_score as accuracy_score
 
-class MyClass(object):
-    '''
-    classdocs
-    '''
+class PerceptronSimple(object):
     def __init__ (self):
-        '''
-        Constructor
-        '''
         self.w = None
         self.b = None
     
-    def model(self, x):
+    def modelo(self, x):
         return 1 if (np.dot(self.w, x) >= self.b) else 0
     
-    def predict(self, X):
+    def prediccion(self, X):
         Y = []
         for x in X:
             result = self.model(x)
             Y.append(result)
             return np.array(Y)
     
-    def fit(self, X, Y, epochs = 1, lr = 1):
+    def ajuste(self, X, Y, epochs = 1, lr = 1):
     
         self.w = np.ones(X.shape[1])
         self.b = 0
@@ -63,8 +57,8 @@ class MyClass(object):
         print(max_accuracy,j)
 
         plt.plot(accuracy.values())
-        plt.xlabel("Epoch #")
-        plt.ylabel("Accuracy")
+        plt.xlabel("Ciclo #")
+        plt.ylabel("Precision")
         plt.ylim([0, 1])
         plt.show()
 
