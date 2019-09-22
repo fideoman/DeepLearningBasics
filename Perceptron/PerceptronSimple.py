@@ -4,7 +4,6 @@ Creado inicialmente el 20-09-2019
 @author: Isaac Silva Luna
 '''
 import numpy as np
-import matplotlib.pyplot as plt
 import sklearn.metrics.accuracy_score as accuracy_score
 
 class PerceptronSimple(object):
@@ -13,6 +12,9 @@ class PerceptronSimple(object):
         self.b = None
     
     def modelo(self, x):
+        #Formula base del Perceptron (LaTeX):
+        #y=\left\{\begin{array}{lr}\text{1, si }\sum_{n}^{i=0}w_{i}x_{i}\geq0\\
+        #\text{0, caso contrario}\\\end{array}\right.
         return 1 if (np.dot(self.w, x) >= self.b) else 0
     
     def prediccion(self, X):
@@ -27,8 +29,8 @@ class PerceptronSimple(object):
         self.w = np.ones(X.shape[1])
         self.b = 0
 
-        accuracy = {}
-        max_accuracy = 0
+        precision = {}
+        maxima_precision = 0
 
         wt_matrix = []
 
@@ -44,22 +46,13 @@ class PerceptronSimple(object):
 
             wt_matrix.append(self.w)    
 
-            accuracy[i] = accuracy_score(self.predict(X), Y)
-            if (accuracy[i] > max_accuracy):
-                max_accuracy = accuracy[i]
-                j = i
+            precision[i] = accuracy_score(self.predict(X), Y)
+            if (precision[i] > maxima_precision):
+                maxima_precision = precision[i]
                 chkptw = self.w
                 chkptb = self.b
 
         self.w = chkptw
         self.b = chkptb
 
-        print(max_accuracy,j)
-
-        plt.plot(accuracy.values())
-        plt.xlabel("Ciclo #")
-        plt.ylabel("Precision")
-        plt.ylim([0, 1])
-        plt.show()
-
-        return np.array(wt_matrix)        
+        return np.array(wt_matrix)
