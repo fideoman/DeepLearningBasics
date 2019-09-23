@@ -16,9 +16,9 @@ import sklearn.metrics as metricas
 
 if __name__ == '__main__':
     # Lectura de datos
-    datos = pd.read_csv("../letras.csv")
-    X = datos.drop('letra', axis=1)
-    Y = datos['letra']
+    datos = pd.read_csv("../or.csv")
+    X = datos.drop('salida_or', axis=1)
+    Y = datos['salida_or']
     # Separación datos de entrenamiento y de prueba
     X_entrenamiento, X_prueba, Y_entrenamiento, Y_prueba = train_test_split(
         X, Y, test_size=0.2, random_state=0)
@@ -27,8 +27,7 @@ if __name__ == '__main__':
     X_prueba = X_prueba.values
     perceptron = PerceptronSimple.PerceptronSimple(
         np.random.rand(X.shape[1]), random.random())  # Pesos iniciales y Bias
-    tasas_error = perceptron.ajuste(
-        X_entrenamiento, Y_entrenamiento, 1000, 0.1)
+    tasas_error = perceptron.ajuste(X_entrenamiento, Y_entrenamiento, 10, 0.1)
     grafica.plot(list(tasas_error.values()))
     grafica.xlabel("# Ciclo")
     grafica.ylabel("Tasa Error")

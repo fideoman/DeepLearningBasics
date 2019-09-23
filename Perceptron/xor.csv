@@ -1,3 +1,4 @@
+entrada1,entrada2,entrada3,entrada4,salida_xor
 0,0,1,0,1
 1,1,1,1,0
 1,0,1,1,0

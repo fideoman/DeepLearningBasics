@@ -16,9 +16,9 @@ import sklearn.metrics as metricas
 
 if __name__ == '__main__':
     # Lectura de datos
-    datos = pd.read_csv("../letras.csv")
-    X = datos.drop('letra', axis=1)
-    Y = datos['letra']
+    datos = pd.read_csv("../xor.csv")
+    X = datos.drop('salida_xor', axis=1)
+    Y = datos['salida_xor']
     # Separación datos de entrenamiento y de prueba
     X_entrenamiento, X_prueba, Y_entrenamiento, Y_prueba = train_test_split(
         X, Y, test_size=0.2, random_state=0)
